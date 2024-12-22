@@ -43,7 +43,7 @@ class NetSchool:
   def logout(self):
     res = requests.post('https://net-school.cap.ru/webapi/auth/logout',
       data={
-        "at":"02872638704874641346969371",
+        "at":self.at,
         "VER":"1734880036083"
       }, 
       headers={
