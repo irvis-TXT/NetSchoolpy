@@ -1,3 +1,3 @@
 from .netapi import NetSchool
 
-__all__ = ['clientNet']
+__all__ = ['NetSchool‎']
