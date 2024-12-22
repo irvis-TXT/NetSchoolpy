@@ -39,6 +39,28 @@ class NetSchool:
     self.cookie =  json.loads(str(ses.cookies.get_dict()).replace("'",'"'))
     return str(response.json()['at'])
   
+  
+  def logout(self):
+    res = requests.post('https://net-school.cap.ru/webapi/auth/logout',
+      data={
+        "at":"02872638704874641346969371",
+        "VER":"1734880036083"
+      }, 
+      headers={
+        "At": self.at,
+        "Origin": "https://net-school.cap.ru",
+        "Referer": "https://net-school.cap.ru/app/school/main/"
+      }, 
+      cookies=self.cookie)
+    res1 = requests.get('https://net-school.cap.ru/webapi/auth/logout', 
+      headers={
+        "At": self.at,
+        "Origin": "https://net-school.cap.ru",
+        "Referer": "https://net-school.cap.ru/app/school/main/"
+      }, 
+      cookies=self.cookie)
+    
+    
   def get_name(self):
     res = requests.get('https://net-school.cap.ru/webapi/context', headers={
       'At': self.at,
@@ -47,12 +69,11 @@ class NetSchool:
     )
     return res.json()["user"]["name"]
   def work(self):
-    res = requests.get('https://net-school.cap.ru/webapi/student/diary?schoolId=514&studentId=823976&vers=1733153515912&weekEnd=2024-12-15&weekStart=2024-12-09&withLaAssigns=true&yearId=162614', headers={
+    res = requests.get('https://net-school.cap.ru/webapi/student/diary?schoolId=514&studentId=823976&vers=1733153515912&weekStart=2024-12-23&weekEnd=2024-12-23&withLaAssigns=false&yearId=162614', headers={
       'At': self.at,
     },
     cookies=self.cookie
     )
-    x = json.loads(res.text)
-    print(json.dumps(x,indent=4,ensure_ascii=False))
+    return json.dumps(json.loads(res.text),indent=4,ensure_ascii=False)
 
 
