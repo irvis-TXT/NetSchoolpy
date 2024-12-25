@@ -1,7 +1,7 @@
 import requests
 import hashlib
 import json
-
+import datetime
 
 class NetSchool:
   def __init__(self,un,password):
@@ -68,8 +68,11 @@ class NetSchool:
     cookies=self.cookie
     )
     return res.json()["user"]["name"]
-  def work(self):
-    res = requests.get('https://net-school.cap.ru/webapi/student/diary?schoolId=514&studentId=823976&vers=1733153515912&weekStart=2024-12-23&weekEnd=2024-12-23&withLaAssigns=false&yearId=162614', headers={
+  
+  
+  def work(self, startdate = datetime.date.today(), enddate = datetime.date.today()):
+    res = requests.get(f'https://net-school.cap.ru/webapi/student/diary?schoolId=514&studentId=823976&weekStart={startdate}&weekEnd={enddate}&yearId=162614', 
+    headers={
       'At': self.at,
     },
     cookies=self.cookie
