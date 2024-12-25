@@ -1,6 +1,6 @@
 from netschool import NetSchool
 
-client = NetSchool('ЕфимовР11', 'EfimowR114')
+client = NetSchool('', '')
 
 client.login()
 
